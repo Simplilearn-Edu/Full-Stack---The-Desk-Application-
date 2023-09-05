@@ -90,11 +90,49 @@ public class Main {
             }
     private static void searchExpenses(ArrayList<Integer> arrayList) {
         int leng = arrayList.size();
-        System.out.println("Enter the expense you need to search:\t");
-        //Complete the method
+	        System.out.println("Enter the expense you need to search:\t");
+	        Scanner sc = new Scanner(System.in);
+	        int searchExpense = sc.nextInt();
+
+	        boolean found = false;
+	        for (int i = 0; i < leng; i++) {
+	            if (arrayList.get(i) == searchExpense) {
+	                System.out.println("Expense found at index " + i);
+	                found = true;
+	            }
+	        }
+
+	        if (!found) {
+	            System.out.println("Expense not found.");
+	        }
     }
     private static void sortExpenses(ArrayList<Integer> arrayList) {
-        int arrlength =  arrayList.size();
+        //int arrlength =  arrayList.size();
        //Complete the method. The expenses should be sorted in ascending order.
+        int arrlength = arrayList.size();
+	        
+	        // Convert ArrayList to a simple array
+	        int[] expenses = new int[arrlength];
+	        for (int i = 0; i < arrlength; i++) {
+	            expenses[i] = arrayList.get(i);
+	        }
+
+	        // Perform bubble sort
+	        for (int i = 0; i < arrlength - 1; i++) {
+	            for (int j = 0; j < arrlength - i - 1; j++) {
+	                if (expenses[j] > expenses[j + 1]) {
+	                    // Swap elements
+	                    int temp = expenses[j];
+	                    expenses[j] = expenses[j + 1];
+	                    expenses[j + 1] = temp;
+	                }
+	            }
+	        }
+
+	        System.out.println("Expenses sorted in ascending order:");
+	        for (int i = 0; i < arrlength; i++) {
+	            System.out.print(expenses[i] + " ");
+	        }
+	        System.out.println("\n");
     }
 }
