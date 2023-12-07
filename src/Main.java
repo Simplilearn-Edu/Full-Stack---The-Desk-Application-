@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
@@ -68,6 +69,7 @@ public class Main {
                         break;
                     case 4:
                         sortExpenses(expenses);
+                        System.out.println("sorted expenses are: "+expenses+"\n");
                         optionsSelection();
                         break;
                     case 5:
@@ -90,11 +92,40 @@ public class Main {
             }
     private static void searchExpenses(ArrayList<Integer> arrayList) {
         int leng = arrayList.size();
+        Collections.sort(arrayList);
         System.out.println("Enter the expense you need to search:\t");
-        //Complete the method
+        Scanner sc=new Scanner(System.in);
+        int x=sc.nextInt();
+        int l=0, r=leng-1;
+        while(l<=r) {
+        	int m = l + (r - l) / 2;
+        	 
+            if (arrayList.get(m).equals(x)){
+            	System.out.println(x + " is fount in the list at index:" + m );
+            	return;
+            } else if (arrayList.get(m) < x){
+            	l = m + 1;
+            } else {
+            	r = m - 1;
+            }
+        }
+        System.out.println(x + " is not present in the given list");
+
     }
     private static void sortExpenses(ArrayList<Integer> arrayList) {
         int arrlength =  arrayList.size();
+        int i, j, temp;
+        for (i = 0; i < arrlength - 1; i++) {
+            for (j = 0; j < arrlength - i - 1; j++) {
+                if (arrayList.get(j) > arrayList.get(j+1)) {
+                    temp = arrayList.get(j);
+                    arrayList.set(j, arrayList.get(j+1));
+                    arrayList.set(j+1, temp);
+                }
+            }
+        }
+    }
+        
        //Complete the method. The expenses should be sorted in ascending order.
     }
-}
+
